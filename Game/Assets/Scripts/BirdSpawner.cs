@@ -43,17 +43,26 @@ public class BirdSpawner : MonoBehaviour
 
         while (_timeSinceLastSpawn > TimeBetweenSpawns)
         {
-            var randomBird = Birds[Random.Range(0, Birds.Length)];
-            var randomSpawnArea = SpawnAreas[Random.Range(0, SpawnAreas.Length)];
-
-            var spawnOffset = Random.insideUnitCircle * (randomSpawnArea.size / 2);
-
-            var spawnPosition = randomSpawnArea.transform.position + new Vector3(spawnOffset.x, spawnOffset.y, 0f);
-
-            var bird = Instantiate(randomBird, spawnPosition, Quaternion.identity, this.transform);
-            bird.GetComponent<FlyBirdFly>().Speed *= _speedMultiplier;
+            var count = Random.Range(1, 3);
+            for (var i = 0; i < count; i++)
+            {
+                SpawnBird();
+            }
 
             _timeSinceLastSpawn -= TimeBetweenSpawns;
         }
+    }
+
+    void SpawnBird()
+    {
+        var randomBird = Birds[Random.Range(0, Birds.Length)];
+        var randomSpawnArea = SpawnAreas[Random.Range(0, SpawnAreas.Length)];
+
+        var spawnOffset = Random.insideUnitCircle * (randomSpawnArea.size / 2);
+
+        var spawnPosition = randomSpawnArea.transform.position + new Vector3(spawnOffset.x, spawnOffset.y, 0f);
+
+        var bird = Instantiate(randomBird, spawnPosition, Quaternion.identity, this.transform);
+        bird.GetComponent<FlyBirdFly>().Speed *= _speedMultiplier;
     }
 }

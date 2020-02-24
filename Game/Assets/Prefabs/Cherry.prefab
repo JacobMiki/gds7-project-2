@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8634523207644699876}
   - component: {fileID: 2438773206778121397}
   - component: {fileID: 2095057888624847670}
+  - component: {fileID: 3452270039957480113}
+  - component: {fileID: 2395482380048673213}
   m_Layer: 0
   m_Name: Cherry
   m_TagString: Cherry
@@ -26,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3877624897671935942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3, y: 3.46, z: 0}
-  m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6a6c4e2ec30451e4da644ac1fe1e95b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88c398e8cc8feb24c8cfb6212e691852, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5, y: 0.57}
+  m_Size: {x: 4.75, y: 8.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94,3 +96,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd1b0dedb576c74592cacb90bee01b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3452270039957480113
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877624897671935942}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 5
+  m_LinearDrag: 2
+  m_AngularDrag: 0.25
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2395482380048673213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877624897671935942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae245b57f76dc154e8e3b0dfe90a19d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Influence: 0.5

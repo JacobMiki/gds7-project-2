@@ -6,7 +6,7 @@ public class FlyBirdFly : MonoBehaviour
 {
     public float Speed;
     public float GrabCherryRange;
-    public Transform CarryCherryPoint;
+    public HingeJoint2D CarryCherryPoint;
     public float BobSpeedFactor = 0.5f;
     public float BobAmplitudeFactor = 0.02f;
     private Vector3 _moveDirection;
@@ -62,14 +62,23 @@ public class FlyBirdFly : MonoBehaviour
 
         if (_targetCherry != null)
         {
+            _moveDirection = Vector3.Normalize(_targetCherry.transform.position - this.transform.position);
+
             var cherryDistance = Vector3.Distance(this.transform.position, _targetCherry.transform.position);
             moveVector *= Mathf.Lerp(0.25f, 1f, cherryDistance / (3 * GrabCherryRange));
             if (cherryDistance < GrabCherryRange)
             {
-                _targetCherry.transform.SetParent(CarryCherryPoint);
-                _targetCherry.transform.position = CarryCherryPoint.position;
+                var _targetCherryRb = _targetCherry.GetComponent<Rigidbody2D>();
+                _targetCherry.transform.SetParent(CarryCherryPoint.transform);
+                _targetCherry.transform.position = CarryCherryPoint.transform.position;
+                CarryCherryPoint.connectedBody = _targetCherryRb;
+                _targetCherryRb.WakeUp();
                 _targetCherry.tag = "Untagged";
                 _targetCherry = null;
+
+                _moveDirection = -_moveDirection;
+                transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, 1f);
+
             }
         }
 
@@ -77,6 +86,7 @@ public class FlyBirdFly : MonoBehaviour
         var bobVector = Mathf.Sin(Time.time * Mathf.PI * Speed * BobSpeedFactor + _randomBobShift) * new Vector3(0, BobAmplitudeFactor, 0);
 
         this.transform.position += moveVector + bobVector;
+        CarryCherryPoint.transform.Rotate(Vector3.forward, bobVector.y * 100 * Mathf.Sign(moveVector.x));
 
         if (this.transform.position.y <= -3.5f)
         {
