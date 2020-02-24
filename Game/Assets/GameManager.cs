@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public int CherryCount { get; set; }
 
+    public Color GlobalSpriteShade { get; set; }
+
     public Text ScoreText;
     public Text TimeText;
     public GameObject GameOverText;
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Input.backButtonLeavesApp = true;
+        GlobalSpriteShade = Color.white;
 
     }
 
