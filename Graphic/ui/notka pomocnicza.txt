@@ -1,0 +1,14 @@
+FONT:
+Wszędzie gdzie nie zrobiłam przycisków używamy fontu: BAMBINO BOLD (załączony w paczce)  
+W score board wielkość fontu: 38 pkt
+w Challenges wielkość fontu: 21 pkt
+
+KWADRATY I INNE APLIKACJE: 
+W score board wielkość prostokątów to: 715 x 60 piks
+Challenges wielkość prostokątów to: 216 x 253 piks
+Efekt przeźroczystości uzyskany w photoshopie za pomocą opcji: Łagodne światło (krycie 100%) 
+
+Oczywiście rozmiary są orientacyjne i nie są jakimś must have, jeżeli zrobisz inaczej i bedzie wygladać lepiej, albo lepiej sie bedzie układać - droga wolna! 
+
+Wrzucam też  nowe tło gry (fazy 1), które powinno współgrać z tłem z menu. 
+
