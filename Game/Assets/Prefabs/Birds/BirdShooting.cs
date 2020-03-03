@@ -24,6 +24,6 @@ public class BirdShooting : TouchableBehaviour
         var scale = gameObject.transform.localScale;
         gameObject.transform.localScale = new Vector3(scale.x, -scale.y, scale.z);
         _birdMovement.Dead = true;
-        _gameManager.Score += _score;
+        _gameManager.BirdHit(_score);
     }
 }

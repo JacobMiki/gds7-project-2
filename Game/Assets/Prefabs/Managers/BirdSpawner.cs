@@ -13,20 +13,19 @@ public class BirdSpawn
 
 public class BirdSpawner : MonoBehaviour
 {
-    public BirdSpawn[] Birds;
+    public BirdSpawn[] DayBirds;
+    public BirdSpawn[] NightBirds;
+
     public BoxCollider2D[] SpawnAreas;
     public float TimeBetweenSpawns = 1.66f;
 
     private float _timeSinceLastSpawn = 0;
-    private float _totalChance;
+
+    private GameManager _gameManager;
 
     void Start()
     {
-        _totalChance = 0f;
-        foreach (var bs in Birds)
-        {
-            _totalChance += bs.Chance;
-        }
+        _gameManager = GameManager.gameManager;
     }
 
     void Update()
@@ -59,8 +58,17 @@ public class BirdSpawner : MonoBehaviour
 
     BirdSpawn GetRandomBird()
     {
-        var rand = Random.value * _totalChance;
-        foreach (var bs in Birds)
+        var birdList = _gameManager.IsNight ? NightBirds : DayBirds;
+
+        var totalChance = 0f;
+        foreach (var bs in birdList)
+        {
+            totalChance += bs.Chance;
+        }
+
+        var rand = Random.value * totalChance;
+
+        foreach (var bs in birdList)
         {
             rand -= bs.Chance;
             if (rand <= 0)

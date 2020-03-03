@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteAlphaShader : MonoBehaviour
 {
-    GameManager _gameManager;
+    ColorController _colorController;
     SpriteRenderer _spriteRenderer;
     Color _originalColor;
 
@@ -12,7 +12,7 @@ public class SpriteAlphaShader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _gameManager = GameManager.gameManager;
+        _colorController = ColorController.colorContoller;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originalColor = _spriteRenderer.color;
     }
@@ -20,6 +20,6 @@ public class SpriteAlphaShader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _spriteRenderer.color = _originalColor * (1 - _gameManager.GlobalSpriteShade.b) * 2;
+        _spriteRenderer.color = _originalColor * (_colorController.Color.a);
     }
 }

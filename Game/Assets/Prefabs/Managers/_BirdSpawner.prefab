@@ -124,13 +124,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f405af7e4862f54385df6d197f1eb0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Birds:
+  DayBirds:
   - Bird: {fileID: 5834655955576083743, guid: 027ac7e5fef5b654cb553fb65f0e8ed1, type: 3}
     Chance: 60
   - Bird: {fileID: 6364169823014248709, guid: 18741dec2d56c0940b33055a846df14d, type: 3}
     Chance: 25
   - Bird: {fileID: 109644886780940088, guid: 0a80ff4e0e0ed0e4987b7a1d9a596d0c, type: 3}
     Chance: 20
+  NightBirds:
+  - Bird: {fileID: 7533931145847512028, guid: 58cc322b382e9534294d8abddc3087d4, type: 3}
+    Chance: 40
+  - Bird: {fileID: 6339688565839863177, guid: 3884e4ef691b90947bd203ba475c9e93, type: 3}
+    Chance: 30
+  - Bird: {fileID: 771348847199478504, guid: f44e3b474d60b514abac2d70514965bf, type: 3}
+    Chance: 30
   SpawnAreas:
   - {fileID: 7536972331338402040}
   - {fileID: 7536972330882226643}

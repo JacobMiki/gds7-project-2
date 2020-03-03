@@ -36,7 +36,7 @@ public abstract class TouchableBehaviour : MonoBehaviour
             if(touch.phase == ReactToTouchPhase)
             {
                 var position = Camera.main.ScreenToWorldPoint(touch.position);
-                if(Physics2D.OverlapPoint(position) == _collider)
+                if(Physics2D.OverlapPoint(position, LayerMask.GetMask("Birds", "PowerUps", "OtherTouchables")) == _collider)
                 {
                     OnTouched();
                 }

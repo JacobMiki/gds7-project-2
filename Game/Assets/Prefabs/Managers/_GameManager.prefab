@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8828e0050426a044d931123ec505a266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreText: {fileID: 0}
-  TimeText: {fileID: 0}
-  GameOverText: {fileID: 0}
+  _scoreText: {fileID: 0}
+  _timeText: {fileID: 0}
+  _multiplierText: {fileID: 0}
+  _gameOverText: {fileID: 0}
+  _dayTime: 300
+  _nightTime: 300
+  _hitsPerMultiplierIncrement: 4
