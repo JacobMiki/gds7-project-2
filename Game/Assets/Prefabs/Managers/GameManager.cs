@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gameManager => GameObject.FindObjectOfType<GameManager>();
+    public static GameManager gameManager => FindObjectOfType<GameManager>();
 
     public int Score { get => _score; set { _score = value; ScoreText.text = _score.ToString(); } }
 
