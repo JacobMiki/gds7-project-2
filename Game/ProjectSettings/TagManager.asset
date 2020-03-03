@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cherry
+  - Spawner
+  - IntermediateTarget
   layers:
   - Default
   - TransparentFX
@@ -41,4 +43,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2997054063
+    locked: 0
+  - name: Tree
+    uniqueID: 3880051389
+    locked: 0
+  - name: Cherries
+    uniqueID: 2432409227
+    locked: 0
+  - name: Birds
+    uniqueID: 1506304645
+    locked: 0
+  - name: UI
+    uniqueID: 3782235369
     locked: 0
