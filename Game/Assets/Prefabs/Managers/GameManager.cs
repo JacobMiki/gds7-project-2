@@ -4,6 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class DifficultyStep
+{
+    public float BirdSpeedIncrement;
+    public int MaxBirdsOnScreenIncrement;
+    public float TimeBetweenSpawns;
+    public int MinBirdSpawnCount;
+    public int MaxBirdSpawnCount;
+    public float TimeToNextStep;
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager => FindObjectOfType<GameManager>();
@@ -41,6 +52,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float _hitsPerMultiplierIncrement;
 
+    [SerializeField]
+    private DifficultyStep[] _difficultySteps;
+    private int _difficultyStepIndex = 0;
+    private float _difficultyStepTimer;
+
+
+    [SerializeField]
+    private BirdSpawner _birdSpawner;
+
+    [SerializeField]
+    private float _speedBoost;
+
+    [SerializeField]
+    private int _maxBirdsOnScreen;
+
+    private float _timeSinceLastSpawn = 0;
+
+    private DifficultyStep _currentDifficultyStep { get { return _difficultySteps[_difficultyStepIndex]; } }
+
     private int _score;
     private int _scoreMultiplier = 1;
     private int _birdHitCounter = 0;
@@ -49,6 +79,7 @@ public class GameManager : MonoBehaviour
     {
         Input.backButtonLeavesApp = true;
         _multiplierText.text = "";
+        _difficultyStepTimer = _currentDifficultyStep.TimeToNextStep;
     }
 
     void Update()
@@ -60,7 +91,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if(Input.GetButtonDown("Cancel"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             _pauseScreen.SetActive(true);
             Time.timeScale = 0;
@@ -69,6 +100,31 @@ public class GameManager : MonoBehaviour
         if (_pauseScreen.activeInHierarchy)
         {
             return;
+        }
+
+        _difficultyStepTimer -= Time.deltaTime;
+        if (_difficultyStepTimer <= 0)
+        {
+            DifficultyUp();
+        }
+
+        _timeSinceLastSpawn += Time.deltaTime;
+        if (_timeSinceLastSpawn > _currentDifficultyStep.TimeBetweenSpawns)
+        {
+            var birdsOnScreen = FindObjectsOfType<BirdMovement>().Length;
+            while (_timeSinceLastSpawn > _currentDifficultyStep.TimeBetweenSpawns)
+            {
+                var count = Random.Range(_currentDifficultyStep.MinBirdSpawnCount, _currentDifficultyStep.MaxBirdSpawnCount + 1);
+                count = Mathf.Min(count, _maxBirdsOnScreen - birdsOnScreen);
+                for (var i = 0; i < count; i++)
+                {
+                    birdsOnScreen++;
+                    var bird = _birdSpawner.SpawnBird();
+                    bird.Speed += _speedBoost;
+                }
+
+                _timeSinceLastSpawn -= _currentDifficultyStep.TimeBetweenSpawns;
+            }
         }
 
         PhaseTimer += Time.deltaTime;
@@ -82,7 +138,15 @@ public class GameManager : MonoBehaviour
         _timeText.text = mm + ":" + ss;
     }
 
-    void RestartGame()
+    private void DifficultyUp()
+    {
+        _difficultyStepIndex = Mathf.Min(_difficultySteps.Length - 1, _difficultyStepIndex + 1);
+        _difficultyStepTimer = _currentDifficultyStep.TimeToNextStep;
+        _maxBirdsOnScreen += _currentDifficultyStep.MaxBirdsOnScreenIncrement;
+        _speedBoost += _currentDifficultyStep.BirdSpeedIncrement;
+    }
+
+    public void RestartGame()
     {
         var scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
@@ -92,6 +156,11 @@ public class GameManager : MonoBehaviour
     {
         _pauseScreen.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public void BirdHit(int score)

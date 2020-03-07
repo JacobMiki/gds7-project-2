@@ -46,7 +46,30 @@ MonoBehaviour:
   _scoreText: {fileID: 0}
   _timeText: {fileID: 0}
   _multiplierText: {fileID: 0}
-  _gameOverText: {fileID: 0}
+  _gameOverScreen: {fileID: 0}
+  _pauseScreen: {fileID: 0}
   _dayTime: 300
   _nightTime: 300
   _hitsPerMultiplierIncrement: 4
+  _difficultySteps:
+  - BirdSpeedIncrement: 0
+    MaxBirdsOnScreenIncrement: 0
+    TimeBetweenSpawns: 3
+    MinBirdSpawnCount: 1
+    MaxBirdSpawnCount: 3
+    TimeToNextStep: 60
+  - BirdSpeedIncrement: 1
+    MaxBirdsOnScreenIncrement: 1
+    TimeBetweenSpawns: 2
+    MinBirdSpawnCount: 2
+    MaxBirdSpawnCount: 3
+    TimeToNextStep: 60
+  - BirdSpeedIncrement: 1
+    MaxBirdsOnScreenIncrement: 1
+    TimeBetweenSpawns: 2
+    MinBirdSpawnCount: 3
+    MaxBirdSpawnCount: 3
+    TimeToNextStep: 60
+  _birdSpawner: {fileID: 0}
+  _speedBoost: 0
+  _maxBirdsOnScreen: 6

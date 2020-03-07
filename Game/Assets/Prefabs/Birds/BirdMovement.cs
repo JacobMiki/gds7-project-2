@@ -22,6 +22,13 @@ public class BirdMovement : MonoBehaviour
     private float _curveTimeShift;
     private Vector3 _scale;
 
+    public float Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
+
+
     void Start()
     {
         _curveTimeShift = Random.value;
@@ -63,8 +70,11 @@ public class BirdMovement : MonoBehaviour
 
     private void MoveOnCurve()
     {
-        var yShift = _curve.Evaluate(_curveTimeShift + Time.realtimeSinceStartup);
+        if (Time.timeScale > 0)
+        {
+            var yShift = _curve.Evaluate(_curveTimeShift + Time.time);
 
-        transform.position += new Vector3(0, yShift * _curveAmplitude);
+            transform.position += new Vector3(0, yShift * _curveAmplitude);
+        }
     }
 }

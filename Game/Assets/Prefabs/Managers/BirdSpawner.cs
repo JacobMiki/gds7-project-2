@@ -17,9 +17,7 @@ public class BirdSpawner : MonoBehaviour
     public BirdSpawn[] NightBirds;
 
     public BoxCollider2D[] SpawnAreas;
-    public float TimeBetweenSpawns = 1.66f;
 
-    private float _timeSinceLastSpawn = 0;
 
     private GameManager _gameManager;
 
@@ -28,23 +26,7 @@ public class BirdSpawner : MonoBehaviour
         _gameManager = GameManager.gameManager;
     }
 
-    void Update()
-    {
-        _timeSinceLastSpawn += Time.deltaTime;
-
-        while (_timeSinceLastSpawn > TimeBetweenSpawns)
-        {
-            var count = Random.Range(1, 3);
-            for (var i = 0; i < count; i++)
-            {
-                SpawnBird();
-            }
-
-            _timeSinceLastSpawn -= TimeBetweenSpawns;
-        }
-    }
-
-    void SpawnBird()
+    public BirdMovement SpawnBird()
     {
         var randomBird = GetRandomBird();
         var randomSpawnArea = SpawnAreas[Random.Range(0, SpawnAreas.Length)];
@@ -53,7 +35,7 @@ public class BirdSpawner : MonoBehaviour
 
         var spawnPosition = randomSpawnArea.transform.position + new Vector3(spawnOffset.x, spawnOffset.y, 0f);
 
-        var bird = Instantiate(randomBird.Bird, spawnPosition, Quaternion.identity, transform);
+        return Instantiate(randomBird.Bird, spawnPosition, Quaternion.identity, transform).GetComponent<BirdMovement>();
     }
 
     BirdSpawn GetRandomBird()
