@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
     private Text _multiplierText;
 
     [SerializeField]
-    private GameObject _gameOverText;
+    private GameObject _gameOverScreen;
+
+    [SerializeField]
+    private GameObject _pauseScreen;
 
     [SerializeField]
     private float _dayTime;
@@ -39,7 +42,6 @@ public class GameManager : MonoBehaviour
     private float _hitsPerMultiplierIncrement;
 
     private int _score;
-    private float _gameOverTimer;
     private int _scoreMultiplier = 1;
     private int _birdHitCounter = 0;
 
@@ -53,14 +55,19 @@ public class GameManager : MonoBehaviour
     {
         if (CherryCount == 0)
         {
-            _gameOverText.SetActive(true);
-            _gameOverTimer += Time.deltaTime;
+            _gameOverScreen.SetActive(true);
 
-            if (_gameOverTimer >= 5f)
-            {
-                RestartGame();
-            }
+            return;
+        }
 
+        if(Input.GetButtonDown("Cancel"))
+        {
+            _pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+        if (_pauseScreen.activeInHierarchy)
+        {
             return;
         }
 
@@ -79,6 +86,12 @@ public class GameManager : MonoBehaviour
     {
         var scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    public void Resume()
+    {
+        _pauseScreen.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void BirdHit(int score)
