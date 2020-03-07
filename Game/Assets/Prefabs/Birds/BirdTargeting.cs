@@ -211,6 +211,7 @@ public class BirdTargeting : MonoBehaviour
         var offset = Random.insideUnitCircle * (randomSpawnArea.size / 2);
 
         var worldPos = randomSpawnArea.transform.position + new Vector3(offset.x, offset.y, 0f);
+        worldPos += (worldPos - transform.position).normalized * 100f;
 
 
         var target = Instantiate(_intermediateTarget);
