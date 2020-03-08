@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private Text _gameOverScoreText;
     [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private Animator _uiAnimator;
     [SerializeField] private float _dayTime;
     [SerializeField] private float _nightTime;
     [SerializeField] private float _hitsPerMultiplierIncrement;
@@ -160,6 +161,7 @@ public class GameManager : MonoBehaviour
         {
             _scoreMultiplier++;
             _multiplierText.text = $"x{_scoreMultiplier}";
+            _uiAnimator.SetTrigger("MultUp");
         }
     }
 

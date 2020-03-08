@@ -226,4 +226,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f5444d477fd0e418bfec1ef140eda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _touchToleranceRadius: 0.2
   _score: 10
