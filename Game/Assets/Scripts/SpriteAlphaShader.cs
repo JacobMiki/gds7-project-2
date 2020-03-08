@@ -20,6 +20,6 @@ public class SpriteAlphaShader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _spriteRenderer.color = _originalColor * (_colorController.Color.a);
+        _spriteRenderer.color = new Color(_originalColor.r, _originalColor.g, _originalColor.b, _colorController.Color.a);
     }
 }

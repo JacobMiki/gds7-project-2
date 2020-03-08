@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,53 +19,33 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager => FindObjectOfType<GameManager>();
 
-    public int Score { get => _score; set { _score = value; _scoreText.text = _score.ToString(); } }
+    public int Score { get => _score; set { _score = value; _scoreText.text = _score.ToString(); _gameOverScoreText.text = _score.ToString(); } }
 
     public int CherryCount { get; set; }
 
     public bool IsNight { get; set; }
-    public float PhaseTimer { get; set; }
+    public float PhaseTimer { get; set; } = 1f;
     public float DayTime => _dayTime;
     public float NightTime => _nightTime;
 
-    [SerializeField]
-    private Text _scoreText;
+    [SerializeField] private GameObject _inGameUi;
+    [SerializeField] private Text _scoreText;
+    [SerializeField] private Text _timeText;
+    [SerializeField] private Text _multiplierText;
+    [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private Text _gameOverScoreText;
+    [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private float _dayTime;
+    [SerializeField] private float _nightTime;
+    [SerializeField] private float _hitsPerMultiplierIncrement;
 
-    [SerializeField]
-    private Text _timeText;
-
-    [SerializeField]
-    private Text _multiplierText;
-
-    [SerializeField]
-    private GameObject _gameOverScreen;
-
-    [SerializeField]
-    private GameObject _pauseScreen;
-
-    [SerializeField]
-    private float _dayTime;
-
-    [SerializeField]
-    private float _nightTime;
-
-    [SerializeField]
-    private float _hitsPerMultiplierIncrement;
-
-    [SerializeField]
-    private DifficultyStep[] _difficultySteps;
+    [SerializeField] private DifficultyStep[] _difficultySteps;
     private int _difficultyStepIndex = 0;
     private float _difficultyStepTimer;
 
-
-    [SerializeField]
-    private BirdSpawner _birdSpawner;
-
-    [SerializeField]
-    private float _speedBoost;
-
-    [SerializeField]
-    private int _maxBirdsOnScreen;
+    [SerializeField] private BirdSpawner _birdSpawner;
+    [SerializeField] private float _speedBoost;
+    [SerializeField] private int _maxBirdsOnScreen;
 
     private float _timeSinceLastSpawn = 0;
 
@@ -77,9 +57,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Input.backButtonLeavesApp = true;
         _multiplierText.text = "";
         _difficultyStepTimer = _currentDifficultyStep.TimeToNextStep;
+        Score = 0;
     }
 
     void Update()
@@ -87,14 +67,14 @@ public class GameManager : MonoBehaviour
         if (CherryCount == 0)
         {
             _gameOverScreen.SetActive(true);
+            _inGameUi.SetActive(false);
 
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            _pauseScreen.SetActive(true);
-            Time.timeScale = 0;
+            Pause();
         }
 
         if (_pauseScreen.activeInHierarchy)
@@ -152,9 +132,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
+    public void Pause()
+    {
+        _pauseScreen.SetActive(true);
+        _inGameUi.SetActive(false);
+        Time.timeScale = 0;
+    }
+
     public void Resume()
     {
         _pauseScreen.SetActive(false);
+        _inGameUi.SetActive(true);
         Time.timeScale = 1;
     }
 

@@ -16,6 +16,7 @@ public class Menus : MonoBehaviour
     void Start()
     {
        _rectTransform = GetComponent<RectTransform>();
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
