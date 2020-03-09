@@ -43,10 +43,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8828e0050426a044d931123ec505a266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inGameUi: {fileID: 0}
   _scoreText: {fileID: 0}
   _timeText: {fileID: 0}
   _multiplierText: {fileID: 0}
-  _gameOverText: {fileID: 0}
-  _dayTime: 300
-  _nightTime: 300
+  _gameOverScreen: {fileID: 0}
+  _gameOverScoreText: {fileID: 0}
+  _pauseScreen: {fileID: 0}
+  _uiAnimator: {fileID: 0}
+  _dayTime: 120
+  _nightTime: 120
   _hitsPerMultiplierIncrement: 4
+  _difficultySteps:
+  - BirdSpeedIncrement: 0
+    MaxBirdsOnScreenIncrement: 0
+    TimeBetweenSpawns: 3
+    MinBirdSpawnCount: 1
+    MaxBirdSpawnCount: 3
+    TimeToNextStep: 60
+  - BirdSpeedIncrement: 1
+    MaxBirdsOnScreenIncrement: 1
+    TimeBetweenSpawns: 2
+    MinBirdSpawnCount: 2
+    MaxBirdSpawnCount: 3
+    TimeToNextStep: 60
+  - BirdSpeedIncrement: 1
+    MaxBirdsOnScreenIncrement: 1
+    TimeBetweenSpawns: 2
+    MinBirdSpawnCount: 3
+    MaxBirdSpawnCount: 3
+    TimeToNextStep: 60
+  _birdSpawner: {fileID: 0}
+  _speedBoost: 0
+  _maxBirdsOnScreen: 6

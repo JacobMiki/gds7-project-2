@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class TouchableBehaviour : MonoBehaviour
 {
+    [SerializeField] protected float _touchToleranceRadius;
     public bool Enabled { get; set; } = true;
     public TouchPhase ReactToTouchPhase { get; set; } = TouchPhase.Began;
     protected abstract void OnTouched();
@@ -36,7 +37,7 @@ public abstract class TouchableBehaviour : MonoBehaviour
             if(touch.phase == ReactToTouchPhase)
             {
                 var position = Camera.main.ScreenToWorldPoint(touch.position);
-                if(Physics2D.OverlapPoint(position, LayerMask.GetMask("Birds", "PowerUps", "OtherTouchables")) == _collider)
+                if(Physics2D.OverlapCircle(position, _touchToleranceRadius, LayerMask.GetMask("Birds", "PowerUps", "OtherTouchables")) == _collider)
                 {
                     OnTouched();
                 }

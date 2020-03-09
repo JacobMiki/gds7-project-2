@@ -83,6 +83,11 @@ public class BirdTargeting : MonoBehaviour
 
     void OnBecameInvisible()
     {
+        if (_currentIntermediateTarget != null)
+        {
+            Destroy(_currentIntermediateTarget);
+            _currentIntermediateTarget = null;
+        }
         Destroy(gameObject);
     }
 
@@ -201,6 +206,18 @@ public class BirdTargeting : MonoBehaviour
                 break;
         }
 
-        return escape;
+        var randomSpawnArea = escape.GetComponent<BoxCollider2D>();
+
+        var offset = Random.insideUnitCircle * (randomSpawnArea.size / 2);
+
+        var worldPos = randomSpawnArea.transform.position + new Vector3(offset.x, offset.y, 0f);
+        worldPos += (worldPos - transform.position).normalized * 100f;
+
+
+        var target = Instantiate(_intermediateTarget);
+        target.transform.position = worldPos;
+        _currentIntermediateTarget = target;
+
+        return target;
     }
 }
