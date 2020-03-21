@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5752313584841769337
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010944663307022651, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5106018074230041756, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: _powerUpEffect
+      value: 
+      objectReference: {fileID: 8984314340719102850, guid: 6cd48d43b6fc22549adc1f1bd7538117,
+        type: 3}
+    - target: {fileID: 6673346833708748490, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: _speed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7480425128669655073, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d15105b791f87f4498085229a93d53a1,
+        type: 3}
+    - target: {fileID: 7868594614748436794, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_Name
+      value: PowerUp (Flashbang)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735500594917172708, guid: 54982346c5d784a418e0f8db0f9d0c3d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: aeedd416a8ce22e4aa7bf207a0f39d83,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54982346c5d784a418e0f8db0f9d0c3d, type: 3}

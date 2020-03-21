@@ -6,18 +6,12 @@ public class MissCatcher : TouchableBehaviour
 {
     GameManager _gameManager;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         _gameManager = GameManager.gameManager;
     }
 
-    protected override void Update()
-    {
-        base.Update();
-    }
-
-    protected override void OnTouched()
+    public override void OnTouched()
     {
         _gameManager.Miss();
     }

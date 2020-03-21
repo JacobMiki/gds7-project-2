@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _inGameUi;
     [SerializeField] private Text _scoreText;
-    [SerializeField] private Text _timeText;
     [SerializeField] private Text _multiplierText;
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private Text _gameOverScoreText;
@@ -49,6 +48,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _maxBirdsOnScreen;
 
     private float _timeSinceLastSpawn = 0;
+    private float _unscaledTimeSinceLevelLoad = 0;
 
     private DifficultyStep _currentDifficultyStep { get { return _difficultySteps[_difficultyStepIndex]; } }
 
@@ -56,11 +56,18 @@ public class GameManager : MonoBehaviour
     private int _scoreMultiplier = 1;
     private int _birdHitCounter = 0;
 
+    public float TimeScale { get; set; } = 1.0f;
+    public bool Paused { get; set; } = true;
+
+    [SerializeField] private CameraShake _cameraShake;
+
     void Start()
     {
         _multiplierText.text = "";
         _difficultyStepTimer = _currentDifficultyStep.TimeToNextStep;
         Score = 0;
+        _unscaledTimeSinceLevelLoad = 0;
+        Resume();
     }
 
     void Update()
@@ -78,18 +85,19 @@ public class GameManager : MonoBehaviour
             Pause();
         }
 
-        if (_pauseScreen.activeInHierarchy)
+        if (Paused)
         {
             return;
         }
 
-        _difficultyStepTimer -= Time.deltaTime;
+        _difficultyStepTimer -= Time.unscaledDeltaTime;
         if (_difficultyStepTimer <= 0)
         {
             DifficultyUp();
         }
 
-        _timeSinceLastSpawn += Time.deltaTime;
+        _unscaledTimeSinceLevelLoad += Time.unscaledDeltaTime;
+        _timeSinceLastSpawn += Time.unscaledDeltaTime;
         if (_timeSinceLastSpawn > _currentDifficultyStep.TimeBetweenSpawns)
         {
             var birdsOnScreen = FindObjectsOfType<BirdMovement>().Length;
@@ -108,15 +116,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        PhaseTimer += Time.deltaTime;
+        PhaseTimer += Time.unscaledDeltaTime;
         PhaseTimer %= _dayTime + _nightTime;
 
         IsNight = PhaseTimer > _dayTime;
-
-        var mm = Mathf.FloorToInt(Time.timeSinceLevelLoad / 60).ToString().PadLeft(2, '0');
-        var ss = Mathf.FloorToInt(Time.timeSinceLevelLoad % 60).ToString().PadLeft(2, '0');
-
-        _timeText.text = mm + ":" + ss;
     }
 
     private void DifficultyUp()
@@ -129,6 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Resume();
         var scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
@@ -137,6 +141,7 @@ public class GameManager : MonoBehaviour
     {
         _pauseScreen.SetActive(true);
         _inGameUi.SetActive(false);
+        Paused = true;
         Time.timeScale = 0;
     }
 
@@ -144,7 +149,8 @@ public class GameManager : MonoBehaviour
     {
         _pauseScreen.SetActive(false);
         _inGameUi.SetActive(true);
-        Time.timeScale = 1;
+        Paused = false;
+        Time.timeScale = TimeScale;
     }
 
     public void GoToMainMenu()
@@ -152,7 +158,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void BirdHit(int score)
+    public void BirdHit(int score, bool shake = false)
     {
         Score += score * _scoreMultiplier;
         _birdHitCounter++;
@@ -162,7 +168,14 @@ public class GameManager : MonoBehaviour
             _scoreMultiplier++;
             _multiplierText.text = $"x{_scoreMultiplier}";
             _uiAnimator.SetTrigger("MultUp");
+
+            if (shake) _cameraShake.Shake(0.15f, 3f, 3);
         }
+        else
+        {
+            if(shake) _cameraShake.Shake(0.15f, 2f, 2);
+        }
+
     }
 
     public void Miss()
@@ -170,5 +183,12 @@ public class GameManager : MonoBehaviour
         _scoreMultiplier = 1;
         _birdHitCounter = 0;
         _multiplierText.text = "";
+        _cameraShake.Shake(0.1f, 2f, 2);
+
+    }
+
+    public void CameraShake(float intensity, float speed, int count)
+    {
+        _cameraShake.Shake(intensity, speed, count);
     }
 }

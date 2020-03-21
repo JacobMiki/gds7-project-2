@@ -1551,6 +1551,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Challenges
       objectReference: {fileID: 0}
+    - target: {fileID: 5720829317020442076, guid: 97f14503312528b4db8a8dd7ba6da9e9,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a843c1bed8fd3e14fbf4b73bb6651dce,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97f14503312528b4db8a8dd7ba6da9e9, type: 3}
 --- !u!224 &5720829318310562849 stripped

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,24 +11,33 @@ public class BirdShooting : TouchableBehaviour
     private BirdMovement _birdMovement;
     private GameManager _gameManager;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         _birdMovement = GetComponent<BirdMovement>();
         _gameManager = GameManager.gameManager;
     }
 
-    protected override void OnTouched()
+    public override void OnTouched()
     {
         if(Time.timeScale == 0f)
         {
             return;
         }
 
-        Enabled = false;
-        var scale = gameObject.transform.localScale;
-        gameObject.transform.localScale = new Vector3(scale.x, -scale.y, scale.z);
-        _birdMovement.Dead = true;
-        _gameManager.BirdHit(_score);
+        _gameManager.BirdHit(_score, true);
+        Die(0);
+    }
+
+    public void Die(int score)
+    {
+        if (_birdMovement != null && !_birdMovement.Dead)
+        {
+            Enabled = false;
+            var scale = gameObject.transform.localScale;
+            gameObject.transform.localScale = new Vector3(scale.x, -scale.y, scale.z);
+            _birdMovement.Dead = true;
+            if (score > 0) _gameManager.BirdHit(score);
+            GetComponent<Collider2D>().enabled = false;
+        }
     }
 }
