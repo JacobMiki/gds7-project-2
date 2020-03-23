@@ -59,6 +59,7 @@ public class BulletTimePowerUpEffect : MonoBehaviour
 
     void Disable()
     {
+        Achievements.achievements.Set("SLOWMO_KILLS", 0);
         SetTimeScale(1.0f);
         Destroy(gameObject);
     }

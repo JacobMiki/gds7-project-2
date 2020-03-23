@@ -40,6 +40,11 @@ public class Menus : MonoBehaviour
         _targetPosition = new Vector3(-16, 0, 0);
     }
 
+    public void GoToTips()
+    {
+        _targetPosition = new Vector3(0, 9, 0);
+    }
+
     public void ExitGame()
     {
         Application.Quit();

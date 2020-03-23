@@ -31,6 +31,8 @@ public class BirdTargeting : MonoBehaviour
     [SerializeField]
     private GameObject _intermediateTarget;
 
+    [SerializeField] protected AudioSource _shotAudio;
+
     private BirdMovement _birdMovement;
     private Vector3 _initialPosition;
     private int _currentTargetIndex = 0;
@@ -66,6 +68,7 @@ public class BirdTargeting : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Cherry"))
             {
+                _shotAudio?.PlayOneShot(_shotAudio.clip);
                 collision.gameObject.transform.SetParent(_beakPosition);
                 collision.gameObject.transform.localPosition = Vector3.zero;
                 collision.gameObject.tag = "Untagged";

@@ -10,6 +10,7 @@ public class BirdShooting : TouchableBehaviour
 
     private BirdMovement _birdMovement;
     private GameManager _gameManager;
+    [SerializeField] protected AudioSource _shotAudio;
 
     private void Start()
     {
@@ -26,6 +27,8 @@ public class BirdShooting : TouchableBehaviour
 
         _gameManager.BirdHit(_score, true);
         Die(0);
+        _shotAudio?.PlayOneShot(_shotAudio.clip);
+
     }
 
     public void Die(int score)
@@ -36,7 +39,12 @@ public class BirdShooting : TouchableBehaviour
             var scale = gameObject.transform.localScale;
             gameObject.transform.localScale = new Vector3(scale.x, -scale.y, scale.z);
             _birdMovement.Dead = true;
-            if (score > 0) _gameManager.BirdHit(score);
+            if (score > 0)
+            {
+                _shotAudio?.PlayOneShot(_shotAudio.clip);
+
+                _gameManager.BirdHit(score);
+            };
             GetComponent<Collider2D>().enabled = false;
         }
     }

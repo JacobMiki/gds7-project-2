@@ -179,7 +179,7 @@ MonoBehaviour:
     _spawnAreas:
     - {fileID: 7249359618229792373}
     _chanceToSpawn: 0.5
-  - prefab: {fileID: 2514855388156008515, guid: fb555c46ab0bf3e499ccbf891d751b95,
+  - prefab: {fileID: 6964990511052109098, guid: f488a377b016de5469a528a73bba0933,
       type: 3}
     _spawnAreas:
     - {fileID: 1624679504987528592}

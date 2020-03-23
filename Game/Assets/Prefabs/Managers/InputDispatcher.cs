@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputDispatcher : MonoBehaviour
 {
     [SerializeField] protected float _touchToleranceRadius;
+    [SerializeField] protected AudioSource _shotAudio;
 
     public TouchPhase ReactToTouchPhase { get; set; } = TouchPhase.Began;
 
@@ -105,6 +106,8 @@ public class InputDispatcher : MonoBehaviour
 
             if (touch.phase == ReactToTouchPhase)
             {
+                _shotAudio?.PlayOneShot(_shotAudio.clip);
+
                 var position = Camera.main.ScreenToWorldPoint(touch.position);
                 Touch(position);
             }

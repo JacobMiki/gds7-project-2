@@ -45,7 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inGameUi: {fileID: 0}
   _scoreText: {fileID: 0}
-  _timeText: {fileID: 0}
   _multiplierText: {fileID: 0}
   _gameOverScreen: {fileID: 0}
   _gameOverScoreText: {fileID: 0}
@@ -61,13 +60,13 @@ MonoBehaviour:
     MinBirdSpawnCount: 1
     MaxBirdSpawnCount: 3
     TimeToNextStep: 20
-  - BirdSpeedIncrement: 0.5
+  - BirdSpeedIncrement: 0.25
     MaxBirdsOnScreenIncrement: 0
     TimeBetweenSpawns: 3
     MinBirdSpawnCount: 1
     MaxBirdSpawnCount: 3
     TimeToNextStep: 20
-  - BirdSpeedIncrement: 0.5
+  - BirdSpeedIncrement: 0.25
     MaxBirdsOnScreenIncrement: 0
     TimeBetweenSpawns: 3
     MinBirdSpawnCount: 1

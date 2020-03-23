@@ -5,28 +5,54 @@ using UnityEngine;
 public class TntPowerUpEffect : MonoBehaviour
 {
     [SerializeField] private float _effectTime;
-    [SerializeField] private float _effectRadius;
     [SerializeField] private int _scoreOnBirdKill;
+    [SerializeField] private string _achievement;
+    [SerializeField] private Vector2[] _moveToClosest;
+
     private Animator _animator;
+    private Collider2D _collider;
+
+    private int _birds = 0;
+
+
 
     private void Start()
     {
+        _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();
         StartCoroutine(WaitForEnd());
-        transform.localScale = Vector2.one * (_effectRadius / 2.5f);
+
+        if (_moveToClosest != null && _moveToClosest.Length > 0)
+        {
+            var closest = (Vector2)transform.position;
+            var closestDist = Mathf.Infinity;
+            foreach (var v in _moveToClosest)
+            {
+                var dist = Vector2.Distance(transform.position, v);
+                if (Vector2.Distance(transform.position, v) < closestDist)
+                {
+                    closestDist = dist;
+                    closest = v;
+                }
+            }
+
+            transform.position = closest;
+            transform.rotation = Quaternion.identity;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        var birds = Physics2D.OverlapCircleAll(transform.position, _effectRadius, LayerMask.GetMask("Birds"));
-
+        var birds = new List<Collider2D>();
+        Physics2D.OverlapCollider(_collider, new ContactFilter2D() { layerMask = LayerMask.GetMask("Birds") }, birds);
         foreach (var bird in birds)
         {
             var bs = bird.GetComponent<BirdShooting>();
-            if (bs.Enabled)
+            if (bs != null && bs.Enabled)
             {
                 bs.Die(_scoreOnBirdKill);
+                _birds++;
             }
         }
     }
@@ -39,6 +65,7 @@ public class TntPowerUpEffect : MonoBehaviour
 
     public void End()
     {
+        Achievements.achievements.Set(_achievement, _birds);
         Destroy(gameObject);
     }
 }

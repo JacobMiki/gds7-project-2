@@ -19,7 +19,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager => FindObjectOfType<GameManager>();
 
-    public int Score { get => _score; set { _score = value; _scoreText.text = _score.ToString(); _gameOverScoreText.text = _score.ToString(); } }
+    public int Score {
+        get => _score;
+        set
+        {
+            _score = value; _scoreText.text = _score.ToString();
+            _gameOverScoreText.text = _score.ToString();
+            Achievements.achievements.Set("POINTS_IN_GAME", _score);
+        }
+    }
 
     public int CherryCount { get; set; }
 
@@ -34,6 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private Text _gameOverScoreText;
     [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private GameObject _tutorialScreen;
     [SerializeField] private Animator _uiAnimator;
     [SerializeField] private float _dayTime;
     [SerializeField] private float _nightTime;
@@ -48,7 +57,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _maxBirdsOnScreen;
 
     private float _timeSinceLastSpawn = 0;
-    private float _unscaledTimeSinceLevelLoad = 0;
 
     private DifficultyStep _currentDifficultyStep { get { return _difficultySteps[_difficultyStepIndex]; } }
 
@@ -66,8 +74,10 @@ public class GameManager : MonoBehaviour
         _multiplierText.text = "";
         _difficultyStepTimer = _currentDifficultyStep.TimeToNextStep;
         Score = 0;
-        _unscaledTimeSinceLevelLoad = 0;
-        Resume();
+        if (PlayerPrefs.HasKey("seen_tutorial"))
+        {
+            Resume();
+        }
     }
 
     void Update()
@@ -96,7 +106,6 @@ public class GameManager : MonoBehaviour
             DifficultyUp();
         }
 
-        _unscaledTimeSinceLevelLoad += Time.unscaledDeltaTime;
         _timeSinceLastSpawn += Time.unscaledDeltaTime;
         if (_timeSinceLastSpawn > _currentDifficultyStep.TimeBetweenSpawns)
         {
@@ -130,6 +139,12 @@ public class GameManager : MonoBehaviour
         _speedBoost += _currentDifficultyStep.BirdSpeedIncrement;
     }
 
+    public void TryAgain()
+    {
+        Achievements.achievements.Add("TRY_AGAIN", 1);
+        RestartGame();
+    }
+
     public void RestartGame()
     {
         Resume();
@@ -148,9 +163,12 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         _pauseScreen.SetActive(false);
+        _tutorialScreen.SetActive(false);
         _inGameUi.SetActive(true);
         Paused = false;
         Time.timeScale = TimeScale;
+        PlayerPrefs.SetInt("seen_tutorial", 1);
+        PlayerPrefs.Save();
     }
 
     public void GoToMainMenu()
@@ -163,6 +181,8 @@ public class GameManager : MonoBehaviour
         Score += score * _scoreMultiplier;
         _birdHitCounter++;
 
+        Achievements.achievements.Add("BIRD_KILLS", 1);
+
         if (_birdHitCounter % _hitsPerMultiplierIncrement == 0)
         {
             _scoreMultiplier++;
@@ -174,6 +194,14 @@ public class GameManager : MonoBehaviour
         else
         {
             if(shake) _cameraShake.Shake(0.15f, 2f, 2);
+        }
+
+        Achievements.achievements.Set("MULTIPLIER", _scoreMultiplier);
+        Achievements.achievements.Add("MILLION_POINTS", score);
+
+        if (TimeScale < 1 && TimeScale > 0)
+        {
+            Achievements.achievements.Add("SLOWMO_KILLS", 1);
         }
 
     }
