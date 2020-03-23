@@ -8,6 +8,7 @@ TagManager:
   - Spawner
   - IntermediateTarget
   - Bird
+  - PowerUp
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,12 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2997054063
+    locked: 0
+  - name: Power Ups
+    uniqueID: 1675958945
+    locked: 0
+  - name: Mountains
+    uniqueID: 3344380283
     locked: 0
   - name: Tree
     uniqueID: 3880051389

@@ -21,6 +21,7 @@ public class BirdMovement : MonoBehaviour
 
     private float _curveTimeShift;
     private Vector3 _scale;
+    private Animator _animator;
 
     public float Speed
     {
@@ -33,15 +34,19 @@ public class BirdMovement : MonoBehaviour
     {
         _curveTimeShift = Random.value;
         _scale = transform.localScale;
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (Dead)
         {
+            _animator.speed = 0.2f;
             FallDown();
             return;
         }
+
+        _animator.speed = _speed / 4.0f;
 
         if (Target != null)
         {
@@ -55,7 +60,12 @@ public class BirdMovement : MonoBehaviour
     {
         var movementVector = Vector2.down;
 
-        transform.position += (Vector3)movementVector * 2 * _speed * Time.deltaTime;
+        transform.position += (Vector3)movementVector * 20 * Time.deltaTime;
+
+        if (transform.position.y < -6f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void MoveToTarget()

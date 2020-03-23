@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8516035885157716206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5245360817121022498}
+  - component: {fileID: 3543523012342034636}
+  m_Layer: 0
+  m_Name: _Achievements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5245360817121022498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8516035885157716206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3543523012342034636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8516035885157716206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2238057cc1f7e38458c2a334713bbbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _achievements:
+  - _key: BIRD_KILLS
+    _name: Ensure humanity's survival
+    _description: Kill 1,000 birds
+    _sprite: {fileID: 21300000, guid: 1902e7e20f9e6a24880646d643860581, type: 3}
+    _valueToUnlock: 1000
+    _value: 0
+    _unlocked: 0
+  - _key: MILLION_POINTS
+    _name: You look like million dollars
+    _description: Get 100,000 points
+    _sprite: {fileID: 21300000, guid: 044d7df70da64f846a3d38e65201d061, type: 3}
+    _valueToUnlock: 100000
+    _value: 0
+    _unlocked: 0
+  - _key: MULTIPLIER
+    _name: SE7EN
+    _description: Get 7x multiplier
+    _sprite: {fileID: 21300000, guid: eef016381d6a55945b73149bb5890f50, type: 3}
+    _valueToUnlock: 7
+    _value: 0
+    _unlocked: 0
+  - _key: TRY_AGAIN
+    _name: PLAY. FAIL. TRY AGAIN.
+    _description: Hit Try Again button 3 times in a row
+    _sprite: {fileID: 21300000, guid: 56a3daeb60795d14fa437a85511ecd20, type: 3}
+    _valueToUnlock: 3
+    _value: 0
+    _unlocked: 0
+  - _key: POINTS_IN_GAME
+    _name: Not great, not terrible
+    _description: Get 3,600 points in one game
+    _sprite: {fileID: 21300000, guid: 54509608944b963428ddc14a8b152413, type: 3}
+    _valueToUnlock: 3600
+    _value: 0
+    _unlocked: 0
+  - _key: POWERUPS
+    _name: Mysterious spacecraft
+    _description: Use power-up's 67 times
+    _sprite: {fileID: 21300000, guid: 561d25db88a34294b90227fc615f070a, type: 3}
+    _valueToUnlock: 67
+    _value: 0
+    _unlocked: 0
+  - _key: SLOWMO_KILLS
+    _name: Predator
+    _description: Kill 8 birds during one slow-mo power-up
+    _sprite: {fileID: 21300000, guid: d6b62f72024636f4c9539145ebd7c549, type: 3}
+    _valueToUnlock: 8
+    _value: 0
+    _unlocked: 0
+  - _key: FLASHBANG_SCARES
+    _name: Pacifist
+    _description: Scare 25 Birds during Flashbang power-up
+    _sprite: {fileID: 21300000, guid: f52dbab15d56248439b83514f7346c7d, type: 3}
+    _valueToUnlock: 25
+    _value: 0
+    _unlocked: 0
+  - _key: TNT_KILLS
+    _name: Bombardier
+    _description: Kill 4 birds with one use of Dynamite power-up
+    _sprite: {fileID: 21300000, guid: 3ca0afbfeb4047740b4951feff96df2f, type: 3}
+    _valueToUnlock: 4
+    _value: 0
+    _unlocked: 0
+  - _key: ROCKSTAR
+    _name: Looking like a rockstar
+    _description: ??????
+    _sprite: {fileID: 21300000, guid: a843c1bed8fd3e14fbf4b73bb6651dce, type: 3}
+    _valueToUnlock: 9999
+    _value: 0
+    _unlocked: 0
