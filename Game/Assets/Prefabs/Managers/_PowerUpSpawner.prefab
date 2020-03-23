@@ -167,23 +167,23 @@ MonoBehaviour:
     _spawnAreas:
     - {fileID: 8191247727799143453}
     - {fileID: 8191247727094348123}
-    _chanceToSpawn: 1
+    _chanceToSpawn: 0.9
   - prefab: {fileID: 5974819047928961745, guid: 8a70ca6d6cb2b824da4ddbe8160f87dd,
       type: 3}
     _spawnAreas:
     - {fileID: 8191247727799143453}
     - {fileID: 8191247727094348123}
-    _chanceToSpawn: 0.7
+    _chanceToSpawn: 0.6
   - prefab: {fileID: 2514855388156008515, guid: fb555c46ab0bf3e499ccbf891d751b95,
       type: 3}
     _spawnAreas:
     - {fileID: 7249359618229792373}
-    _chanceToSpawn: 0.5
+    _chanceToSpawn: 0.4
   - prefab: {fileID: 6964990511052109098, guid: f488a377b016de5469a528a73bba0933,
       type: 3}
     _spawnAreas:
     - {fileID: 1624679504987528592}
-    _chanceToSpawn: 0.5
+    _chanceToSpawn: 0.4
   _timeBetweenTryingToSpawn: 10
 --- !u!1 &8191247727094348117
 GameObject:

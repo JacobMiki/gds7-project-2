@@ -49,10 +49,11 @@ MonoBehaviour:
   _gameOverScreen: {fileID: 0}
   _gameOverScoreText: {fileID: 0}
   _pauseScreen: {fileID: 0}
+  _tutorialScreen: {fileID: 0}
   _uiAnimator: {fileID: 0}
   _dayTime: 40
   _nightTime: 20
-  _hitsPerMultiplierIncrement: 4
+  _hitsPerMultiplierIncrement: 3
   _difficultySteps:
   - BirdSpeedIncrement: 0
     MaxBirdsOnScreenIncrement: 0
@@ -89,7 +90,7 @@ MonoBehaviour:
     TimeBetweenSpawns: 2
     MinBirdSpawnCount: 2
     MaxBirdSpawnCount: 4
-    TimeToNextStep: 15
+    TimeToNextStep: 20
   _birdSpawner: {fileID: 0}
   _speedBoost: 0
   _maxBirdsOnScreen: 6

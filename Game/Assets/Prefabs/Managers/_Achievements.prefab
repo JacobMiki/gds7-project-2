@@ -49,68 +49,50 @@ MonoBehaviour:
     _description: Kill 1,000 birds
     _sprite: {fileID: 21300000, guid: 1902e7e20f9e6a24880646d643860581, type: 3}
     _valueToUnlock: 1000
-    _value: 0
-    _unlocked: 0
   - _key: MILLION_POINTS
     _name: You look like million dollars
     _description: Get 100,000 points
     _sprite: {fileID: 21300000, guid: 044d7df70da64f846a3d38e65201d061, type: 3}
     _valueToUnlock: 100000
-    _value: 0
-    _unlocked: 0
   - _key: MULTIPLIER
     _name: SE7EN
     _description: Get 7x multiplier
     _sprite: {fileID: 21300000, guid: eef016381d6a55945b73149bb5890f50, type: 3}
     _valueToUnlock: 7
-    _value: 0
-    _unlocked: 0
   - _key: TRY_AGAIN
     _name: PLAY. FAIL. TRY AGAIN.
     _description: Hit Try Again button 3 times in a row
     _sprite: {fileID: 21300000, guid: 56a3daeb60795d14fa437a85511ecd20, type: 3}
     _valueToUnlock: 3
-    _value: 0
-    _unlocked: 0
   - _key: POINTS_IN_GAME
     _name: Not great, not terrible
     _description: Get 3,600 points in one game
     _sprite: {fileID: 21300000, guid: 54509608944b963428ddc14a8b152413, type: 3}
     _valueToUnlock: 3600
-    _value: 0
-    _unlocked: 0
   - _key: POWERUPS
     _name: Mysterious spacecraft
     _description: Use power-up's 67 times
     _sprite: {fileID: 21300000, guid: 561d25db88a34294b90227fc615f070a, type: 3}
     _valueToUnlock: 67
-    _value: 0
-    _unlocked: 0
   - _key: SLOWMO_KILLS
     _name: Predator
     _description: Kill 8 birds during one slow-mo power-up
     _sprite: {fileID: 21300000, guid: d6b62f72024636f4c9539145ebd7c549, type: 3}
     _valueToUnlock: 8
-    _value: 0
-    _unlocked: 0
   - _key: FLASHBANG_SCARES
     _name: Pacifist
     _description: Scare 25 Birds during Flashbang power-up
     _sprite: {fileID: 21300000, guid: f52dbab15d56248439b83514f7346c7d, type: 3}
     _valueToUnlock: 25
-    _value: 0
-    _unlocked: 0
   - _key: TNT_KILLS
     _name: Bombardier
     _description: Kill 4 birds with one use of Dynamite power-up
     _sprite: {fileID: 21300000, guid: 3ca0afbfeb4047740b4951feff96df2f, type: 3}
     _valueToUnlock: 4
-    _value: 0
-    _unlocked: 0
   - _key: ROCKSTAR
     _name: Looking like a rockstar
     _description: ??????
     _sprite: {fileID: 21300000, guid: a843c1bed8fd3e14fbf4b73bb6651dce, type: 3}
     _valueToUnlock: 9999
-    _value: 0
-    _unlocked: 0
+  _achievementUnlocked: {fileID: 0}
+  _achievementUnlockedAnimator: {fileID: 0}

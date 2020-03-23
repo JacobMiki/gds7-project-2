@@ -19,7 +19,7 @@ public class InputDispatcher : MonoBehaviour
     protected virtual void Update()
     {
 
-        if (_gameManager.Paused)
+        if (_gameManager == null || _gameManager.Paused)
         {
             return;
         }

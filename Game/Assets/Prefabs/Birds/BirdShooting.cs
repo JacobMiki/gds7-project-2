@@ -10,7 +10,6 @@ public class BirdShooting : TouchableBehaviour
 
     private BirdMovement _birdMovement;
     private GameManager _gameManager;
-    [SerializeField] protected AudioSource _shotAudio;
 
     private void Start()
     {
@@ -27,7 +26,6 @@ public class BirdShooting : TouchableBehaviour
 
         _gameManager.BirdHit(_score, true);
         Die(0);
-        _shotAudio?.PlayOneShot(_shotAudio.clip);
 
     }
 
@@ -41,8 +39,6 @@ public class BirdShooting : TouchableBehaviour
             _birdMovement.Dead = true;
             if (score > 0)
             {
-                _shotAudio?.PlayOneShot(_shotAudio.clip);
-
                 _gameManager.BirdHit(score);
             };
             GetComponent<Collider2D>().enabled = false;

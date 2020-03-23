@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
 using System.IO;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class AchievementSave
@@ -40,6 +41,8 @@ public class Achievements : MonoBehaviour
     public static Achievements achievements => FindObjectOfType<Achievements>();
 
     [SerializeField] private Achievement[] _achievements;
+    [SerializeField] private Image _achievementUnlocked;
+    [SerializeField] private Animator _achievementUnlockedAnimator;
 
     public Achievement[] AchievementList { get => _achievements; }
 
@@ -47,7 +50,6 @@ public class Achievements : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        // TODO: load values/unlockes
         var _restored = Load();
 
         _dict = _achievements.ToDictionary(a => a.Key);
@@ -99,9 +101,11 @@ public class Achievements : MonoBehaviour
 
     public void TryUnlock(Achievement achievement)
     {
-        if (achievement.Value >= achievement.ValueToUnlock)
+        if (!achievement.Unlocked && achievement.Value >= achievement.ValueToUnlock)
         {
             achievement.Unlocked = true;
+            _achievementUnlocked.sprite = achievement.Sprite;
+            _achievementUnlockedAnimator.SetTrigger("Unlocked");
         }
     }
 
